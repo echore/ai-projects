@@ -147,7 +147,11 @@
   }
   @media print {
     body { background: var(--paper); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    main { max-width: none; padding: 14mm 16mm; }
+    main { max-width: none; padding: 14mm 16mm; -webkit-box-decoration-break: clone; box-decoration-break: clone; zoom: 0.86; }
+    .framework { break-inside: avoid; }
+    .down { break-after: avoid; }
+    html { background: var(--paper); }
+    p, li { orphans: 3; widows: 3; }
     hr { margin: 36px 0; }
     .step, .node, .card, .stage, .branch, .item, .post-list li, .compare, .framework .head { break-inside: avoid; }
     h2, h3 { break-after: avoid; }
