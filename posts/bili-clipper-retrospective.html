@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Building Bili Clipper · Yachen Li</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F2EEDF;
+    --ink: #2A241B;
+    --ink-soft: #5C5345;
+    --rule: rgba(42, 36, 27, 0.25);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Work Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { font-variant-numeric: lining-nums; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17.5px; line-height: 1.7; }
+  main { max-width: 660px; margin: 0 auto; padding: 40px 24px 80px; }
+  a { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--ink); }
+  p { margin: 0 0 18px; }
+  ul { margin: 0 0 18px; padding-left: 20px; }
+  li { margin-bottom: 8px; }
+
+  .back { display: inline-block; font-size: 15px; text-decoration: none; margin-bottom: 48px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 48px; line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 14px; }
+  h1 em { font-weight: 400; }
+  .meta { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); margin-bottom: 40px; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 32px; line-height: 1.1; margin: 48px 0 14px; }
+  h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; line-height: 1.2; margin: 32px 0 8px; }
+  h3 .num { font-style: italic; font-weight: 400; color: var(--ink-soft); margin-right: 10px; }
+  .ps { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); }
+  .signoff { border-top: 1px dashed var(--rule); padding-top: 20px; margin-top: 40px; color: var(--ink-soft); }
+
+  @media (max-width: 640px) {
+    main { padding: 28px 16px 56px; }
+    h1 { font-size: 38px; }
+    h2 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <a class="back" href="../">← AI Projects</a>
+
+  <h1>My Vibe Coding Project with No Tech Background, <em>and What I Learned</em></h1>
+  <div class="meta"><a href="https://www.douban.com/group/topic/495477358/" target="_blank" rel="noopener">Original post in Chinese</a></div>
+
+  <p>I can't code, but I vibe coded a browser extension. One click, and it saves a video's subtitles straight into a notes app like Notion or Obsidian. Or it copies them to your clipboard, and you paste them wherever you want.</p>
+  <p>You don't need any tech skills or extra setup. It's all open source and completely free.</p>
+  <p>Everything is here: <a href="https://github.com/echore/bili-clipper" target="_blank" rel="noopener">github.com/echore/bili-clipper</a>. If you find it useful, a ⭐ would mean a lot.</p>
+
+  <h2>So How Did This All Start from Zero?</h2>
+  <p class="ps">PS: By "AI" in this post, I don't mean chatbots on the web. I mean AI agent tools like OpenAI's Codex and Anthropic's Claude Code.</p>
+  <p>I love the Obsidian Web Clipper extension, but back then it couldn't grab subtitles from Bilibili (a big Chinese video site). My usual workflow goes like this: when I see a good post on X or a good YouTube video, I click "clip" in Obsidian Web Clipper, and it lands right in my Obsidian notes. But it didn't work on Bilibili. So I was like: fine, I'll just have AI build one.</p>
+  <p>First, I didn't want to reinvent the wheel. So I asked AI, trusting it completely, whether anyone had already built something like this. AI said no, very confidently. So I talked through what I wanted in a lot of detail, and together we wrote an idea doc and a build plan.</p>
+  <p>Then I let it run in the background. Out of nowhere, I thought: why not search online myself? Turns out someone had already built it. I asked AI: "Um, didn't someone already make this??" It said: "Sorry."</p>
+  <p>But when I tried that person's tool, the setup was kind of a pain. You had to download a local API plugin and then set it up. And that was exactly the plan AI had given me.</p>
+  <p>Then it hit me, and something felt really off. The official Obsidian Web Clipper needs zero setup, and our tool did almost the same thing. So why could the official one keep it that simple, while AI's plan needed all this annoying setup?</p>
+  <p>So I asked AI the same question again. It admitted its plan was way too complicated and said sorry again. Then it built the extension the new way.</p>
+  <p>I also really like Notion, so I had it add Notion support. And I know not everyone uses notes apps like Obsidian or Notion. If you just want the subtitles, we added a "Copy to clipboard only" option too. It only copies them, and you decide where to paste them, in whatever notes app you like.</p>
+  <p>That's the whole story of how I took an extension from 0 to 1. I didn't write a single line of the code. AI wrote all of it. But the first idea, the pushback along the way, and the result I was going for all came from me.</p>
+  <p>Honestly, this was a pretty simple vibe coding project. It's a small branch that grew out of someone else's work.</p>
+
+  <h2>A Few Small Lessons</h2>
+  <p>This tool came from my own pain point. When I find great videos and posts, I want my notes to go straight into the notes app I use every day. The tools out there couldn't quite do that, so I decided to build one myself.</p>
+  <p>Looking back, here's what I learned about working with AI:</p>
+
+  <h3><span class="num">01</span>Get ideas from great work</h3>
+  <p>Before I started, I already knew an official extension could do something similar. If I hadn't known that, I might have been stuck taking notes the old way, by hand. So looking at other people's great tools and work is a really good place to start.</p>
+
+  <h3><span class="num">02</span>Never trust AI's search results 100%</h3>
+  <p>Early on, I made a mistake. I trusted AI completely when I asked, "Has anyone built a tool like this?" It didn't find what it should have found, and I didn't check for myself.</p>
+  <p>Now I know for sure that even the built-in web search in agent tools isn't great. I've added a lot of my own tools to make its search better, but I still think you should always be careful with what AI gives you and check it yourself.</p>
+
+  <h3><span class="num">03</span>Get past the limits of "I don't know code"</h3>
+  <p>Since I don't have a coding background, at first I pretty much had to accept whatever plan AI gave me. I didn't even know what the other options were. When you don't know a field, it's really hard to tell whether AI's answer is the best one, or even a correct one.</p>
+  <p>So I can only judge from the little experience I have. For example, I knew an official project was super simple to set up, and AI gave me a really clunky plan. So I called it out right away.</p>
+  <p>When I pushed back like that, AI rethought it, even searched for the latest tools, and came up with a much better plan. But a person still had to make the final call. That's why I believe a person's deep understanding of a field won't be replaced. If anything, it becomes more valuable.</p>
+
+  <h3><span class="num">04</span>Be AI's manager, not a boss who hands everything off</h3>
+  <p>Having AI build something for you doesn't mean you can hand the whole thing off. From the very start and through every step in the middle, you have to think, judge, and manage. You need to be clear about what result you actually want.</p>
+  <p>Overall, AI is a great doer, but right now it doesn't seem able to see the big picture. So the better way to work together is this: it's the doer, and you're the manager.</p>
+  <ul>
+    <li>If your goal is fuzzy, there's no way AI will give you something good.</li>
+    <li>AI can only handle the work in between well when you know your goal, your requirements, and the result you want really clearly, and can explain all of it to AI in detail. Your job is to keep steering it the right way.</li>
+  </ul>
+
+  <h3><span class="num">05</span>Make it your own: start big, then cut back</h3>
+  <p>None of the tools I use now are plain, out-of-the-box versions. At first, I added tons of plugins, hooks, and skills. But as I kept testing and cutting, I slowly went from complex to simple. In the end, I only kept a handful of custom tools that I use all the time.</p>
+  <p>My advice: first learn a bit about agent tools and the ideas behind them. Then keep testing them in real use, and pick the set that works best for you. Agent tools are already powerful out of the box, but to get the most out of them, you still need to guide them clearly and correctly.</p>
+
+  <p class="signoff">I also think input and output should go hand in hand. As a non-technical person slowly learning agent tools, I want to keep turning what I take in into things I put out. I'll cover agent tools and ideas in future posts. See you next time!</p>
+
+</main>
+</body>
+</html>

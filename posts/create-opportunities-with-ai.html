@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Create Every Possible Opportunity · Yachen Li</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F2EEDF;
+    --ink: #2A241B;
+    --ink-soft: #5C5345;
+    --rule: rgba(42, 36, 27, 0.25);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Work Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { font-variant-numeric: lining-nums; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17.5px; line-height: 1.7; }
+  main { max-width: 660px; margin: 0 auto; padding: 40px 24px 80px; }
+  a { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--ink); }
+  p { margin: 0 0 18px; }
+  ol, ul { margin: 0 0 18px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+
+  .back { display: inline-block; font-size: 15px; text-decoration: none; margin-bottom: 48px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 48px; line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 14px; }
+  h1 em { font-weight: 400; }
+  .meta { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); margin-bottom: 40px; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 32px; line-height: 1.1; margin: 48px 0 14px; }
+  h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; line-height: 1.2; margin: 32px 0 8px; }
+  .num { font-style: italic; font-weight: 400; color: var(--ink-soft); margin-right: 10px; }
+  .aside { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); }
+  blockquote { margin: 24px 0; padding: 4px 0 4px 20px; border-left: 2px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.45; }
+  blockquote cite { display: block; margin-top: 8px; font-family: var(--sans); font-style: normal; font-size: 14px; color: var(--ink-soft); }
+  .signoff { border-top: 1px dashed var(--rule); padding-top: 20px; margin-top: 40px; color: var(--ink-soft); }
+
+  @media (max-width: 640px) {
+    main { padding: 28px 16px 56px; }
+    h1 { font-size: 38px; }
+    h2 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <a class="back" href="../">← AI Projects</a>
+
+  <h1>How to Use AI to Create <em>Every Possible Opportunity</em></h1>
+  <div class="meta">Opportunity Hunter · Post 1 · <a href="https://www.douban.com/group/topic/504061588/" target="_blank" rel="noopener">Original post in Chinese</a></div>
+
+  <p>I've always believed that opportunities can be created, and that AI can be a huge lever along the way. But what matters most is still the person. Am I willing to believe this? Am I willing to try? Am I willing to keep exploring?</p>
+  <p>I want to write this series because I've noticed that a lot of things turn out to be the same at their core.</p>
+  <p>Take applying to grad school. You have to gather tons of information, organize it, and cold-email professors. Job hunting is the same. You have to collect a huge amount of info on roles and companies, network, and go to all kinds of events. "Applying to school" and "finding a job" sound like just a few words. But behind each one is a whole system, a lot like managing a project. It's messy, it's full of small tasks, and there are so many steps. And school never really taught us how to do any of it. There's plenty of advice online, but most of it comes in scattered bits. Searching, sorting, and finally getting started eats up so much time.</p>
+  <p>What matters even more: sometimes we simply don't know about certain information or certain opportunities, so we miss out on a lot. People are often about equally capable. But we each come across different information and opportunities, and we create different ones too. That's how the gap slowly grows, and it turns into a good cycle for some people and a bad one for others.</p>
+  <p>So I want to write a series of posts, and maybe make some templates or even a small product (not sure yet). The core idea: share how to use AI agents to find opportunities you didn't know about or couldn't reach before, and make it as easy as possible for anyone to use and set up.</p>
+  <p>In this series, I'll walk you through the two most common topics: job hunting and grad school. I'll start with job hunting, then move on to grad school.</p>
+  <p class="aside">Oh, but I should say this up front. I don't have a full-time job right now, I don't have a lot of experience with job hunting or school applications, and what I share may fit North America better. Still, I believe the core is the same. Take it all as just one perspective.</p>
+  <p>So let's get started. This first post doesn't have much to do with AI, but I think it really matters.</p>
+  <p>First, I think you need to lock in one belief: if you want it, you can definitely find a good job. We can definitely find good jobs. Believe that the road to a job is wider than you think.</p>
+  <p>From watching a lot of people look for jobs, I see two main traps:</p>
+  <ol>
+    <li>Only applying to posted jobs, like the roles on LinkedIn or the big job sites.</li>
+    <li>Only looking at jobs in your own major, or close to it.</li>
+  </ol>
+  <p>So it looks like there aren't many jobs out there. And even when there are lots of openings, there are lots of people applying too. Often it's not about your ability. It's that you don't know about the other information and the other roads out there. So you squeeze onto the one road you can see, and that road is actually really narrow.</p>
+  <p>To fix this, there are two key moves: widen your way in, and widen your direction.</p>
+
+  <h2><span class="num">01</span>Widen Your Way In</h2>
+  <p>Sending out resumes is just the most common way in. That doesn't mean every other door is shut. These days, one role can get a flood of applications, so whether anyone even sees your resume is a big question.</p>
+  <p>So the first thing to do is get real people to see you. Beyond mass-applying, what matters more is finding real people, instead of letting a machine filter out your resume.</p>
+  <p>There are lots of ways to get seen: go find information yourself, then use AI to help you search and sort it. But first you need the mindset. Actively widen your way in, put yourself out there more, and raise your chances of being seen.</p>
+
+  <h2><span class="num">02</span>Widen Your Direction, and Don't Let Your Major Box You In</h2>
+  <p>Of course, I'm not saying to branch out with no goal at all. But what if the job path in your major is already really narrow, you're not happy with your current direction, or the field itself is a dead end? Then be brave and get out in time.</p>
+  <p>Don't keep telling yourself you have no experience. Otherwise you'll get stuck in a loop: no experience, so no job; no job, so even less experience. No experience? Start building it now. Don't keep thinking about sunk costs, and don't make excuses. You can pick up all of it along the way.</p>
+  <p>The core is still belief. Find the direction you truly want, whether or not it connects to your past major or experience.</p>
+  <p>I really agree with something Ying Sheng, the founder of SGLang, once said:</p>
+  <blockquote>
+    Whatever you want to do, there's no real barrier. As long as you're willing to put in the time and focus, nothing is truly hard. The secret is to ignore the people who say "it's too late" or "it's too hard," and only listen to the people who want to help you reach your goal.
+    <cite>Ying Sheng</cite>
+  </blockquote>
+  <p>I'll also share a post I wrote before: <a href="learn-anything-with-ai.html">"How to Learn Anything (the AI Edition)."</a></p>
+
+  <h2>So How Do You Start?</h2>
+  <p>Later, I'll write in more detail about how to use AI to find information, find opportunities, and create opportunities. For now, here are a few tiny steps to get you started:</p>
+
+  <h3><span class="num">01</span>Widen your way in</h3>
+  <p>It's simple. When you scroll social media, you might see events, or posts people share. Go ahead and sign up. Reach out to those people and ask them for a chat. When you see a good opportunity, register and go for it. Don't think "this is probably too hard" or "this has nothing to do with me." Nope. Just try it.</p>
+
+  <h3><span class="num">02</span>Widen your direction, and don't let your major box you in</h3>
+  <p>I know some people might feel they can't do anything except what they studied before. Then learn it from zero. What else are you going to do, right? hahaha</p>
+  <p>One concrete way is to work backward from job descriptions. If you have a clear direction, great, that's easy: read the job descriptions for those roles and work out what you need to learn. If you don't have a clear direction yet, I honestly don't have a shortcut. But I've always believed this: learning only helps. It never hurts.</p>
+  <p>So start with transferable skills, the kind you can still use if you switch industries. Sales, English, AI, computer science, or anything else. If it's a skill, learning it is a good thing.</p>
+
+  <p class="signoff">All in all, I believe this very, very strongly: we can create opportunities ourselves. We have the power to make things happen.<br><br>Next time, I might write about <a href="find-events-with-ai.html">how to use AI to find meaningful, valuable events</a> (online or in person). That's one hands-on way to use AI to widen your way in.</p>
+
+</main>
+</body>
+</html>

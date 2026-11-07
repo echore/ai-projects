@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>How to Learn Anything · Yachen Li</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F2EEDF;
+    --ink: #2A241B;
+    --ink-soft: #5C5345;
+    --lemon: #D6DD63;
+    --card: rgba(255, 255, 255, 0.55);
+    --rule: rgba(42, 36, 27, 0.25);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Work Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { font-variant-numeric: lining-nums; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17.5px; line-height: 1.7; }
+  main { max-width: 660px; margin: 0 auto; padding: 40px 24px 80px; }
+  a { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--ink); }
+  p { margin: 0 0 18px; }
+  ul { margin: 0 0 18px; padding-left: 20px; }
+  li { margin-bottom: 8px; }
+
+  .back { display: inline-block; font-size: 15px; text-decoration: none; margin-bottom: 48px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 48px; line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 14px; }
+  h1 em { font-weight: 400; }
+  .meta { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); margin-bottom: 40px; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 32px; line-height: 1.1; margin: 48px 0 14px; }
+  h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; line-height: 1.2; margin: 32px 0 8px; }
+  h3 .num { font-style: italic; font-weight: 400; color: var(--ink-soft); margin-right: 10px; }
+
+  .prompt { position: relative; background: var(--card); border-radius: 22px; padding: 50px 24px 22px; margin: 12px 0 18px; }
+  .prompt pre { margin: 0; white-space: pre-wrap; font-family: var(--sans); font-size: 15.5px; line-height: 1.65; }
+  .copy { position: absolute; top: 14px; right: 14px; font: inherit; font-size: 13px; color: var(--ink); background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 12px; cursor: pointer; }
+  .copy:hover { border-color: var(--ink); }
+
+  figure { margin: 40px 0 0; width: min(860px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }
+  .loop-scroll { overflow-x: auto; }
+  .loop-scroll svg { display: block; width: 100%; min-width: 600px; height: auto; }
+  svg .box-me { fill: rgba(255, 255, 255, 0.55); stroke: rgba(42, 36, 27, 0.35); }
+  svg .box-ai { fill: var(--lemon); stroke: none; }
+  svg .t { font-family: var(--serif); font-weight: 500; font-size: 22px; fill: var(--ink); }
+  svg .s { font-family: var(--sans); font-size: 13px; fill: var(--ink-soft); }
+  svg .lbl { font-family: var(--serif); font-style: italic; font-size: 18px; fill: var(--ink-soft); }
+  svg .line { fill: none; stroke: var(--ink-soft); stroke-width: 1.5; }
+  .legend { display: flex; gap: 22px; justify-content: center; font-size: 14px; color: var(--ink-soft); margin-top: 10px; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { width: 16px; height: 16px; border-radius: 5px; display: inline-block; }
+  .legend .me { background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(42, 36, 27, 0.35); }
+  .legend .ai { background: var(--lemon); }
+  figcaption { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); text-align: center; margin-top: 14px; }
+
+  @media (max-width: 640px) {
+    main { padding: 28px 16px 56px; }
+    h1 { font-size: 38px; }
+    h2 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <a class="back" href="../">← AI Projects</a>
+
+  <h1>How to Learn Anything <em>(the AI Edition)</em></h1>
+  <div class="meta"><a href="https://www.douban.com/group/topic/502665376/" target="_blank" rel="noopener">Original post in Chinese</a></div>
+
+  <p>I'm putting "AI" in the title because I can clearly feel it: since I started learning with AI agent tools, I learn way faster, and I learn way more. Of course, I can't keep up with how fast AI itself is changing. But learning on its own already makes me happy enough. I honestly never thought I'd be someone who says "learning is fun."</p>
+
+  <h2>Interest and Drive Come First</h2>
+  <p>I can't say whether this works for everyone. But at least for me, curiosity and drive that come from inside help me keep going much longer. Actually, "keep going" isn't quite the right phrase. I just enjoy the process naturally. It takes no willpower. I simply want to learn.</p>
+  <p>If something outside is pushing me, like an exam or a job, I give up the moment the deadline passes. Even while it lasts, I only do just enough to get by and land somewhere around average.</p>
+  <p>Of course, interest and drive don't mean everything will go smoothly, and they won't make you great from day one. Hard things are slow to learn. But taking it slow often ends up being faster.</p>
+
+  <h2>Build a Positive Feedback Loop</h2>
+  <p>Positive feedback keeps your interest and drive alive. Lots of small rewards keep you feeling good. This is where AI comes in, because AI gives you feedback really, really fast.</p>
+  <p>Say I want to explore something. It might be about tech, or about business, fields I was never trained in at school. But AI was!</p>
+  <p>I can say it again and again: this is too hard, I don't get it, give me an example, draw me a diagram, make it simple, start from the very, very basics. AI is perfect for this. In real life, it's hard to get a person to explain the same thing to you over and over. With AI, you don't have to worry about that at all.</p>
+  <p>Without AI, when I didn't understand something, I could only wait for someone who knew the field to explain it, or slowly search on my own. Feedback this fast is something only AI can give.</p>
+  <p>And when I ask it to quiz me and I explain things back in my own words, I can see clearly what I didn't get and what I got really well. AI also cheers me on and gives me lots of positive feedback. That's how the learning loop gets built.</p>
+
+  <figure>
+    <div class="loop-scroll">
+      <svg viewBox="0 0 760 290" role="img" aria-labelledby="loop-title">
+        <title id="loop-title">The learning loop: I get curious, ask one question at a time, AI explains, and I explain it back while AI quizzes me. If I didn't get it, AI tries a new example. If I got it right, the praise makes me want to learn more.</title>
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#5C5345"/>
+          </marker>
+        </defs>
+
+        <text class="lbl" x="575" y="38" text-anchor="middle">Didn't get it: try a new example</text>
+        <path class="line" d="M670,100 V58 H480 V96" marker-end="url(#arrow)"/>
+
+        <rect class="box-me" x="20" y="100" width="160" height="76" rx="22"/>
+        <text class="t" x="100" y="134" text-anchor="middle">Curious</text>
+        <text class="s" x="100" y="156" text-anchor="middle">I just want to learn</text>
+
+        <rect class="box-me" x="210" y="100" width="160" height="76" rx="22"/>
+        <text class="t" x="290" y="134" text-anchor="middle">Ask</text>
+        <text class="s" x="290" y="156" text-anchor="middle">One question at a time</text>
+
+        <rect class="box-ai" x="400" y="100" width="160" height="76" rx="22"/>
+        <text class="t" x="480" y="134" text-anchor="middle">AI explains</text>
+        <text class="s" x="480" y="156" text-anchor="middle">Patient, replies fast</text>
+
+        <rect class="box-me" x="590" y="100" width="160" height="76" rx="22"/>
+        <text class="t" x="670" y="134" text-anchor="middle">Explain it back</text>
+        <text class="s" x="670" y="156" text-anchor="middle">AI quizzes me</text>
+
+        <path class="line" d="M180,138 H206" marker-end="url(#arrow)"/>
+        <path class="line" d="M370,138 H396" marker-end="url(#arrow)"/>
+        <path class="line" d="M560,138 H586" marker-end="url(#arrow)"/>
+
+        <path class="line" d="M670,176 V222 H100 V180" marker-end="url(#arrow)"/>
+        <text class="lbl" x="385" y="256" text-anchor="middle">Got it right: praise and encouragement, I want more</text>
+      </svg>
+    </div>
+    <div class="legend"><span><i class="me"></i>What I do</span><span><i class="ai"></i>What AI does</span></div>
+  </figure>
+
+  <h2>So How Exactly Do You Use AI?</h2>
+  <p>Below, I'll break down how I do it, from simple to advanced.</p>
+
+  <h3><span class="num">01</span>Simple: One Chat Window Is Enough</h3>
+  <p>Free chatbots are already powerful. Tweak your prompt a little and you'll get great results. Say I know nothing about a field or an idea. For example: "What is an agent? What is it for? Why is everyone using it? What can I do with it?" These are the questions that pop into my head the first time I run into something new.</p>
+  <p>First, I usually break it down by "why, what, how."</p>
+  <p>Second, ask one question at a time. Don't throw several at it at once. In this example, you could start with "Why are agents so hot right now?" The answer is simple and easy to follow, and you'll see some interesting things going on. That leads you to the "what": what it actually is.</p>
+  <p>Third, tell AI about your background. A free chatbot has no idea how much you know about the field. When you ask it to explain, its answer won't be made for you or your background. So spell it out in your prompt: I know nothing about this, please keep it simple, and so on.</p>
+  <p>Fourth, you can also have AI quiz you with the Feynman technique: ask it to write a few questions based on what it just explained, and then explain it back in your own words.</p>
+
+  <h3><span class="num">02</span>Advanced: Get a Map First, Then Feed AI the Material</h3>
+  <p>Once you've cleared the simple level and want to go deeper and learn more systematically, start with a map. Before I begin, I ask AI to draw me a "knowledge tree" for the field: what the trunk is, what the branches are, and which branch the thing I'm learning grows on.</p>
+  <p>If the field is so new to me that I can't even build the tree, I ask it to start with the history. When something first appears, it's always simple. Follow how it slowly got more complex, and what it looks like today becomes easy to understand.</p>
+  <p>With the map in hand, I have AI find high-quality books or videos for me to explore. While I learn, I also feed these materials to it so it has plenty of context. That way, I can ask anything, anytime, and get an answer right away.</p>
+
+  <h3><span class="num">03</span>Deep: Build Your Own Learning System</h3>
+  <p>I use agent tools together with Obsidian (a personal notes app) a lot. I have a Markdown file about my background, and a Tutor SOP file that spells out how I like to be taught. Every time I ask it to explain something, AI reads these files on its own, fills in the context, and teaches me the way I like best.</p>
+  <p>Every rule in this SOP was added after a time I got stuck and couldn't keep going. Here are a few:</p>
+  <ul>
+    <li>Rule #1: keep me motivated, keep me going, increase the curiosity.</li>
+    <li>Two ideas per lesson, max. Save the third for next time, and end while my curiosity is still climbing.</li>
+    <li>Plus the basics, like lots of examples and diagrams.</li>
+  </ul>
+  <p>When something grabs me and I want to dig deeper, I also have it load a Feynman technique skill to quiz me. I also use the teach skill by Matt Pocock to have it build lessons as web pages by writing HTML. I customize them with more interactive parts, practice questions, extra reading, and so on. It splits one topic into a few lessons, a small set of maybe 4 to 5. Finishing a whole set feels really rewarding.</p>
+  <p>I once came across a paper about AI that I felt I could barely understand. But the amazing part was that AI kept cheering me on and telling me I could do it. And the paper happened to have a section about how to break something Out-of-Distribution down into something In-Distribution.</p>
+  <p>I thought, isn't that exactly what I'm doing right now? I had AI take this paper, way outside what I knew, and break it down step by step into something inside what I could understand. It took maybe a dozen rounds or more. Honestly, I've almost forgotten what the paper was even about. But I still remember the method: take what you don't know, break it down, and make it your own, one step at a time.</p>
+
+  <h2>To Sum Up</h2>
+  <p>The core is really simple. Love it, be interested. When you don't know something, ask AI. Keep soaking up that positive feedback. And just like that, we can learn anything!</p>
+
+  <h3>A Prompt You Can Copy Right Now</h3>
+  <div class="prompt">
+    <button class="copy" type="button">Copy</button>
+<pre id="prompt-text">I'm [your background, e.g. I've never learned to code], and I want to understand [concept].
+Please explain in this order, one step at a time. After each step, stop and wait for my reply:
+1. Why: why it's so hot right now, and what problem it solves
+2. What: explain it with an everyday example, no jargon or formulas
+3. How: what someone like me can do with it
+If I say "I don't get it," give me a different example, not just different wording.
+After all three steps, give me 2 questions to answer in my own words, and point out where I got it wrong.</pre>
+  </div>
+
+</main>
+<script>
+  document.querySelector('.copy').addEventListener('click', function () {
+    var btn = this;
+    var text = document.getElementById('prompt-text').innerText;
+    var done = function (ok) { btn.textContent = ok ? 'Copied' : 'Select and copy'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+    try {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+    } catch (e) { done(false); }
+  });
+</script>
+</body>
+</html>

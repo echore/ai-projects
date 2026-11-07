@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AI Projects · Yachen Li</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F2EEDF;
+    --ink: #2A241B;
+    --ink-soft: #5C5345;
+    --pink: #E1A4C2;
+    --lemon: #D6DD63;
+    --blush: #E8C9B6;
+    --sage: #B7C7A8;
+    --lilac: #C9BEDC;
+    --card: rgba(255, 255, 255, 0.55);
+    --rule-soft: rgba(42, 36, 27, 0.18);
+    --rule-medium: rgba(42, 36, 27, 0.35);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Work Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-variant-numeric: lining-nums;
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  main { max-width: 880px; margin: 0 auto; padding: 40px 24px 72px; }
+  a { color: var(--ink); text-decoration-color: var(--rule-medium); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--ink); }
+  p { margin: 0 0 12px; }
+  em { font-style: italic; }
+
+  /* Chrome */
+  .chrome { display: flex; justify-content: space-between; align-items: center; margin-bottom: 56px; }
+  .eyebrow { font-size: 15px; }
+  .swatches { display: flex; gap: 8px; }
+  .swatches span { width: 22px; height: 22px; border-radius: 50%; display: block; }
+
+  /* Headlines */
+  h1, h2, .serif { font-family: var(--serif); font-weight: 500; }
+  h1 { font-size: 76px; line-height: 0.95; letter-spacing: -0.015em; margin: 0 0 40px; }
+  h1 em, h2 em { font-weight: 400; }
+  h2 { font-size: 52px; line-height: 1; letter-spacing: -0.01em; margin: 0 0 28px; }
+  h2 .num { font-style: italic; font-weight: 400; color: var(--ink-soft); margin-right: 14px; }
+  h3 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 26px; line-height: 1.1; margin: 34px 0 10px;
+  }
+
+  /* Cards */
+  .card { background: var(--card); border-radius: 28px; padding: 26px 30px; }
+  .grid-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .label { font-family: var(--serif); font-size: 26px; font-weight: 500; line-height: 1.1; margin-bottom: 8px; }
+  .roman { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 40px; line-height: 1; margin-bottom: 12px; }
+
+  .stage { border-radius: 24px; padding: 22px 24px; }
+  .stage p { margin: 0; font-size: 16px; }
+
+  hr { border: 0; border-top: 1px dashed var(--rule-medium); margin: 64px 0; }
+
+  /* Process */
+  .flow { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+  .step { background: var(--card); border-radius: 28px; padding: 24px 30px; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 4px 18px; }
+  .step .roman { font-size: 40px; margin: 0; }
+  .step .step-title { font-family: var(--serif); font-size: 28px; font-weight: 500; line-height: 1.1; margin-bottom: 6px; }
+  .step .step-body { font-size: 16px; color: var(--ink-soft); }
+  .compare { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: stretch; margin-top: 16px; }
+  .compare .pill-card { border-radius: 22px; padding: 14px 18px; }
+  .compare .k { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink-soft); }
+  .compare .v { font-family: var(--serif); font-size: 22px; font-weight: 500; line-height: 1.15; margin-top: 2px; }
+  .compare .to { font-family: var(--serif); font-size: 28px; align-self: center; color: var(--ink-soft); }
+
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin-bottom: 8px; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .pill { display: inline-block; border: 1px solid var(--rule-medium); border-radius: 999px; padding: 6px 16px; font-size: 15px; text-decoration: none; background: var(--card); }
+  .pill:hover { border-color: var(--ink); }
+  .pill-main { background: var(--lemon); border-color: var(--lemon); }
+
+  /* Opportunity flow */
+  .oflow { display: flex; flex-direction: column; align-items: stretch; gap: 0; margin-top: 18px; }
+  .node { border-radius: 28px; padding: 20px 26px; text-align: center; }
+  .node .t { font-family: var(--serif); font-size: 28px; font-weight: 500; line-height: 1.1; }
+  .node .d { font-size: 15.5px; margin-top: 4px; }
+  .node .n { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink-soft); margin-top: 4px; }
+  .kicker { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink-soft); }
+  .down { text-align: center; font-family: var(--serif); font-size: 24px; line-height: 1; padding: 8px 0; color: var(--ink-soft); }
+  .loopnote { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); text-align: center; margin-top: 16px; }
+
+  .post-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .post-list li { background: var(--card); border-radius: 22px; padding: 14px 22px; margin: 0; display: flex; gap: 14px; align-items: baseline; }
+  .post-list .tag { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); min-width: 64px; }
+  .post-list a { font-family: var(--serif); font-size: 23px; font-weight: 500; }
+  .note { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink-soft); margin-top: 10px; }
+
+  /* Framework */
+  .framework { background: var(--card); border-radius: 36px; padding: 34px 30px 28px; margin-top: 28px; }
+  .framework .head { text-align: center; margin-bottom: 22px; }
+  .framework .head .t { font-family: var(--serif); font-size: 40px; font-weight: 500; line-height: 1; }
+  .framework .head .d { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ink-soft); margin-top: 6px; }
+  .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+  .col { display: flex; flex-direction: column; gap: 10px; }
+  .branch { border-radius: 24px; padding: 18px 22px; }
+  .branch .t { font-family: var(--serif); font-size: 32px; font-weight: 500; line-height: 1; }
+  .branch .d { font-size: 15px; margin-top: 4px; }
+  .status { display: inline-block; margin-top: 10px; border-radius: 999px; padding: 2px 12px; font-family: var(--serif); font-style: italic; font-size: 16px; }
+  .item { border-top: 1px dashed var(--rule-soft); padding: 10px 6px 4px; }
+  .item .t { font-family: var(--serif); font-size: 22px; font-weight: 500; line-height: 1.15; }
+  .item .d { font-size: 14.5px; color: var(--ink-soft); }
+  .framework .foot { border-top: 1px dashed var(--rule-medium); margin-top: 20px; padding-top: 14px; font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink-soft); }
+
+  footer { margin-top: 72px; display: flex; justify-content: space-between; font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink-soft); }
+
+  .bg-pink { background: var(--pink); }
+  .bg-lemon { background: var(--lemon); }
+  .bg-blush { background: var(--blush); }
+  .bg-sage { background: var(--sage); }
+  .bg-lilac { background: var(--lilac); }
+  .bg-card { background: var(--card); }
+  .plain { background: transparent; border: 1px dashed var(--rule-medium); }
+  .post-list .orig { font-family: var(--serif); font-style: italic; font-size: 17px; font-weight: 400; color: var(--ink-soft); margin-left: auto; }
+
+  @media (max-width: 640px) {
+    main { padding: 28px 16px 56px; }
+    .chrome { margin-bottom: 36px; }
+    h1 { font-size: 54px; }
+    h2 { font-size: 40px; }
+    .grid-2, .grid-3, .cols { grid-template-columns: minmax(0, 1fr); }
+    .step { grid-template-columns: minmax(0, 1fr); padding: 22px; }
+    .compare { grid-template-columns: minmax(0, 1fr); }
+    .compare .to { transform: rotate(90deg); justify-self: center; }
+    .post-list li { flex-direction: column; gap: 2px; }
+    .post-list .orig { margin-left: 0; }
+    footer { flex-direction: column; gap: 4px; }
+  }
+  @media print {
+    body { background: var(--paper); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    main { max-width: none; padding: 14mm 16mm; }
+    hr { margin: 36px 0; }
+    .step, .node, .card, .stage, .branch, .item, .post-list li, .compare, .framework .head { break-inside: avoid; }
+    h2, h3 { break-after: avoid; }
+  }
+  @page { size: A4; margin: 0; }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="chrome">
+    <div class="eyebrow">Yachen Li</div>
+    <div class="swatches" aria-hidden="true"><span class="bg-pink"></span><span class="bg-lemon"></span><span class="bg-sage"></span></div>
+  </div>
+
+  <h1>AI <em>Projects</em></h1>
+
+  <h3>Summary</h3>
+  <div class="grid-2">
+    <div class="card">
+      <div class="label">AI tools I have built</div>
+      <p style="margin:0">Bili Clipper, a Chrome extension that saves Bilibili video subtitles to Obsidian or Notion in one click.</p>
+    </div>
+    <div class="card">
+      <div class="label">AI recruiting agent</div>
+      <p style="margin:0">I have not built this tool. I am currently working on the Opportunity Hunter Project, an early-stage exploration of how to help individuals discover opportunities.</p>
+    </div>
+  </div>
+
+  <h3>My Three Stages with AI</h3>
+  <div class="grid-3">
+    <div class="stage bg-pink">
+      <div class="roman">01</div>
+      <p>Built a vibe-coding project</p>
+    </div>
+    <div class="stage bg-sage">
+      <div class="roman">02</div>
+      <p>Realized I was producing AI slop, and started learning how to work with AI</p>
+    </div>
+    <div class="stage bg-lemon">
+      <div class="roman">03</div>
+      <p>Now want to understand how AI works underneath</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2><span class="num">01</span>Bili Clipper</h2>
+
+  <h3>Problem</h3>
+  <p>Obsidian's official Web Clipper can save YouTube videos as notes, but it does not support Bilibili, a major Chinese video platform. Many Bilibili videos have no transcript, so the only option was taking notes by hand.</p>
+
+  <h3>Process <span class="kicker">· from problem to product</span></h3>
+  <div class="flow">
+    <div class="step">
+      <div class="roman">01</div>
+      <div>
+        <div class="step-title">Get inspired by an existing product</div>
+        <div class="step-body">Seeing what was already possible made me realize my problem could be solved with software.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="roman">02</div>
+      <div>
+        <div class="step-title">Search and verify, instead of just trusting AI</div>
+        <div class="step-body">The AI first said no such tool existed. My own search turned up similar projects, and I started comparing their approaches.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="roman">03</div>
+      <div>
+        <div class="step-title">Build it with a coding agent</div>
+        <div class="step-body">The agent wrote all of the code. I told it what I wanted, tried what it built, and pushed back when something seemed off, like its first setup plan:</div>
+        <div class="compare">
+          <div class="pill-card bg-pink">
+            <div class="k">AI's first plan</div>
+            <div class="v">Extra Obsidian plugin + local API setup</div>
+          </div>
+          <div class="to">→</div>
+          <div class="pill-card bg-lemon">
+            <div class="k">Revised plan</div>
+            <div class="v">Works with Obsidian, no extra plugin or local API</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="roman">04</div>
+      <div>
+        <div class="step-title">Ship, collect feedback, fix</div>
+        <div class="step-body">I published it on the Chrome Web Store and open-sourced the code. Users then reported that multi-part videos always pulled subtitles from part one, so I fixed the bug and released an update.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Reflection</h3>
+  <ul>
+    <li>AI can write code fast, but most of the time I could not judge whether its approach was right. That is how users ended up finding a bug I had not noticed at all.</li>
+    <li>The same AI gives different results depending on who uses it. So instead of building more tools, I started learning systematically how to work with AI agents, and writing about the lessons to help more people without a technical background.</li>
+  </ul>
+
+  <div class="links">
+    <a class="pill" href="https://github.com/echore/bili-clipper" target="_blank" rel="noopener">GitHub</a>
+    <a class="pill" href="https://chromewebstore.google.com/detail/gbfmnhlfkapbddhldhmpegicppfebbdh" target="_blank" rel="noopener">Chrome Web Store</a>
+    <a class="pill pill-main" href="posts/bili-clipper-retrospective.html">Read the full retrospective →</a>
+  </div>
+
+  <hr>
+
+  <h2><span class="num">02</span>Opportunity Hunter</h2>
+
+  <h3>Problem</h3>
+  <p>Many AI tools already help people find opportunities such as jobs, yet most of my job-seeking classmates do not use them. Some have never heard of them, some cannot set them up, and some find them too complicated. There is a wide gap between what these tools can do and what ordinary users are actually able to use.</p>
+
+  <h3>Goal</h3>
+  <p>Help ordinary people use AI to discover and win opportunities they would otherwise never know about or reach.</p>
+
+  <h3>Approach</h3>
+  <p>Find the users first: find an audience or community → listen to what they need → collect feedback → build the simplest thing and let them try it → iterate on feedback → MVP</p>
+
+  <div class="oflow">
+    <div class="node bg-sage">
+      <div class="kicker">Start with people</div>
+      <div class="t">Find an Audience / Community</div>
+      <div class="d">Observe the problems job seekers and students actually run into</div>
+    </div>
+    <div class="down">↓</div>
+    <div class="node bg-card">
+      <div class="t">Content &amp; Education</div>
+      <div class="d">Share articles, guides, real examples, and methods in public</div>
+    </div>
+    <div class="down">↓</div>
+    <div class="node bg-card">
+      <div class="t">Lightweight Tools</div>
+      <div class="d">Prompt → Template → Skill / Plugin</div>
+      <div class="n">Test whether ordinary users can reuse them easily</div>
+    </div>
+    <div class="down">↓</div>
+    <div class="node bg-card">
+      <div class="t">Community Feedback</div>
+      <div class="d">Watch for needs, friction, real results, and whether people come back</div>
+    </div>
+    <div class="down">↓</div>
+    <div class="node plain">
+      <div class="t">Potential AI Agent / Product</div>
+      <div class="d">Turn only proven, valuable workflows into a product</div>
+      <div class="n">A future possibility, not a current commitment</div>
+    </div>
+    <div class="loopnote">↻ Any stage can loop back based on feedback. The steps are not a fixed sequence.</div>
+  </div>
+
+  <h3>Progress</h3>
+  <ul class="post-list">
+    <li><span class="tag">Post 1</span><a href="posts/create-opportunities-with-ai.html">How to Use AI to Create Every Possible Opportunity</a> <a class="orig" href="https://www.douban.com/group/topic/504061588/" target="_blank" rel="noopener">Chinese original</a></li>
+    <li><span class="tag">Post 2</span><a href="posts/find-events-with-ai.html">How to Use AI to Find Events That Are Actually Worth It</a> <a class="orig" href="https://www.douban.com/group/topic/504651319/" target="_blank" rel="noopener">Chinese original</a></li>
+    <li><span class="tag">Bonus</span><a href="posts/learn-anything-with-ai.html">How to Learn Anything (the AI Edition)</a> <a class="orig" href="https://www.douban.com/group/topic/502665376/" target="_blank" rel="noopener">Chinese original</a></li>
+  </ul>
+
+  <h3>Next Step</h3>
+  <p>I plan to keep writing about different directions. Job hunting is a big topic, so I will use reader feedback to find one specific pain point: something people care about enough and can pick up easily. That is what I want to build a tool for.</p>
+
+  <div class="framework">
+    <div class="head">
+      <div class="t">Opportunity <em style="font-weight:400">Hunter</em></div>
+      <div class="d">A general framework for discovering opportunities</div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="branch bg-lemon">
+          <div class="t">Career</div>
+          <div class="d">Jobs and career opportunities</div>
+          <span class="status bg-card">Current focus</span>
+        </div>
+        <div class="item"><div class="t">Jobs</div><div class="d">Public and hidden openings</div></div>
+        <div class="item"><div class="t">Companies</div><div class="d">Companies and teams worth following</div></div>
+        <div class="item"><div class="t">People</div><div class="d">Potential contacts, mentors, recruiters</div></div>
+        <div class="item"><div class="t">Events</div><div class="d">Industry events, talks, recruiting events</div></div>
+        <div class="item"><div class="t">Communities</div><div class="d">Communities and professional groups</div></div>
+      </div>
+      <div class="col">
+        <div class="branch plain">
+          <div class="t">Education</div>
+          <div class="d">Study and academic opportunities</div>
+          <span class="status bg-card">Later</span>
+        </div>
+        <div class="item"><div class="t">Programs</div><div class="d">Schools, majors, and degree programs</div></div>
+        <div class="item"><div class="t">Research</div><div class="d">Research, advisors, and lab openings</div></div>
+        <div class="item"><div class="t">Funding</div><div class="d">Scholarships and grants</div></div>
+        <div class="item"><div class="t">Academic Events</div><div class="d">Lectures, conferences, and exchanges</div></div>
+        <div class="item"><div class="t">Projects &amp; Programs</div><div class="d">Competitions, fellowships, short programs</div></div>
+      </div>
+    </div>
+    <div class="foot">Career is where I am starting. Education follows the same logic and is a possible later extension, not yet a content plan.</div>
+  </div>
+
+  <footer>
+    <span>Yachen Li</span>
+    <span>Prepared for RadixArk · November 2026</span>
+  </footer>
+
+</main>
+</body>
+</html>
