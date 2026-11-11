@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AI Infra Learning Notes 01 · Yachen Li</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F2EEDF;
+    --ink: #2A241B;
+    --ink-soft: #5C5345;
+    --lemon: #D6DD63;
+    --lemon-mid: rgba(214, 221, 99, 0.6);
+    --lemon-pale: rgba(214, 221, 99, 0.32);
+    --card: rgba(255, 255, 255, 0.55);
+    --rule: rgba(42, 36, 27, 0.25);
+    --rust: #9A4E2C;
+    --serif: "Cormorant Garamond", "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+    --sans: "Work Sans", -apple-system, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { font-variant-numeric: lining-nums; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17.5px; line-height: 1.8; }
+  main { max-width: 680px; margin: 0 auto; padding: 40px 24px 80px; }
+  a { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--ink); }
+  p { margin: 0 0 18px; }
+  ul, ol { margin: 0 0 18px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  strong { font-weight: 500; background: linear-gradient(transparent 62%, var(--lemon-pale) 62%); }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em; background: var(--card); padding: 1px 6px; border-radius: 6px; }
+
+  .back { display: inline-block; font-size: 15px; text-decoration: none; margin-bottom: 48px; }
+  .topnav { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 48px; }
+  .topnav .back { margin-bottom: 0; }
+  .lang { font-size: 15px; text-decoration: none; border: 1px solid var(--rule); border-radius: 999px; padding: 2px 12px; }
+  .lang:hover { border-color: var(--ink); }
+  .series { font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 46px; line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 16px; }
+  .meta { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); margin-bottom: 40px; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 31px; line-height: 1.25; margin: 64px 0 16px; }
+  h2 .num { font-style: italic; font-weight: 400; color: var(--ink-soft); margin-right: 12px; }
+  h3 { font-family: var(--serif); font-weight: 500; font-size: 23px; line-height: 1.3; margin: 36px 0 10px; }
+
+  .note { font-size: 15.5px; color: var(--ink-soft); border-left: 2px solid var(--rule); padding: 2px 0 2px 16px; margin: 0 0 24px; }
+  blockquote { margin: 24px 0; padding: 22px 24px; background: var(--card); border-radius: 18px; font-family: var(--serif); font-size: 21px; line-height: 1.6; }
+  blockquote p:last-child { margin: 0; }
+  .chain { background: var(--card); border-radius: 18px; padding: 18px 22px; margin: 20px 0 24px; font-size: 16px; line-height: 1.9; }
+  .chain b { font-weight: 500; }
+
+  .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 24px 0 8px; }
+  .step { background: var(--card); border-radius: 18px; padding: 18px 18px 14px; }
+  .step .n { font-family: var(--serif); font-style: italic; font-size: 26px; line-height: 1; color: var(--ink-soft); }
+  .step h4 { font-family: var(--serif); font-weight: 500; font-size: 20px; line-height: 1.3; margin: 8px 0 6px; }
+  .step p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+
+  .formula { text-align: center; font-family: var(--serif); font-size: 22px; margin: 20px 0 24px; padding: 16px; background: var(--card); border-radius: 18px; overflow-x: auto; white-space: nowrap; }
+  .formula i { font-style: italic; }
+  .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 4px; }
+  .frac span:first-child { border-bottom: 1px solid var(--ink); padding: 0 4px; }
+
+  .table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+  table { border-collapse: collapse; width: 100%; font-size: 15.5px; line-height: 1.6; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--rule); }
+  th { font-weight: 500; border-bottom: 1.5px solid var(--ink); white-space: nowrap; }
+  td.r, th.r { text-align: right; }
+  tr.total td { font-weight: 500; border-bottom: 1.5px solid var(--ink); }
+
+  figure { margin: 32px 0; }
+  figure.wide { width: min(800px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }
+  figure img { display: block; max-width: 100%; height: auto; max-height: 460px; margin: 0 auto; padding: 14px; background: #fbfcfc; border: 1px solid #e3e9eb; border-radius: 14px; }
+  figure.wide img { max-height: none; }
+  figcaption { font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1.5; color: var(--ink-soft); text-align: center; margin: 14px auto 0; max-width: 640px; padding: 0 8px; }
+
+  .refs { font-size: 15px; line-height: 1.7; }
+  .refs li { margin-bottom: 6px; }
+  .next { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--rule); font-family: var(--serif); font-size: 20px; color: var(--ink-soft); }
+
+  @media (max-width: 640px) {
+    body { font-size: 16.5px; }
+    main { padding: 28px 16px 56px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; margin-top: 52px; }
+    h3 { font-size: 21px; }
+    blockquote { font-size: 19px; padding: 18px; }
+    .steps { grid-template-columns: 1fr; }
+    figcaption { font-size: 16.5px; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="topnav"><a class="back" href="../">← AI Projects</a><a class="lang" href="ai-infra-from-zero-01.html">中文版</a></div>
+
+  <div class="series">AI Infra Learning Notes · 01 / 06</div>
+  <h1>What Happens After a Prompt Enters an LLM?</h1>
+  <div class="meta">From prefill and decode to the KV cache, and prefix reuse across requests</div>
+
+  <p class="note">This is the first note in my series on learning AI infra from zero. I'm writing for readers like me: you've used AI and know roughly how it works, but you aren't an infra specialist. The token counts and examples below are teaching assumptions I chose to make the mechanisms clear, and the diagrams don't show any engine's full official implementation.</p>
+
+  <!-- ============ 00 ============ -->
+  <h2><span class="num">00</span>How I Started Learning AI Infra</h2>
+
+  <p>I knew nothing about AI infra. I didn't even know where to start. But the company I was interviewing with builds AI infra, so I had to figure out what the field actually does.</p>
+  <p>My first move was to ask AI to explain it.</p>
+  <p>On the first try, I asked for the basics. The answer was too shallow, and several parts didn't match AI infra at all. On the second try, I asked it to focus on the company's core technology. It started describing the company instead. My reaction: no, no, no, hold on. This is wrong.</p>
+  <p>That's when I noticed the most important lesson of the whole process:</p>
+
+  <blockquote><p>When AI gives you something that feels wrong, don't ask it to try again and again. It hasn't understood what you want, so more attempts won't get you there. Stop, and work out with it what you actually need.</p></blockquote>
+
+  <p>So I changed the question: "I don't understand this field yet. Can we build a knowledge tree first? Give me the structure, break it into steps, and then I'll work down the tree one level at a time."</p>
+  <p>This time, the learning plan it gave me was right.</p>
+  <p>One more habit made a big difference. After each concept, I had AI ask me a question, and I answered it. That way it could test whether I'd actually understood the idea. This is the Feynman technique: if you can explain something in your own words, you understand it. I wrote about how I use AI for this in <a href="learn-anything-with-ai.html">How to Learn Anything (the AI Edition)</a>.</p>
+
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h4>Stop, Don't Retry</h4><p>Retrying only gives you new versions of the same misunderstanding. First agree with AI on what you actually want.</p></div>
+    <div class="step"><div class="n">2</div><h4>Get the Structure First</h4><p>Ask AI to map the field as a knowledge tree with clear levels, then pick where to start.</p></div>
+    <div class="step"><div class="n">3</div><h4>One Question per Node</h4><p>After each module, you should be able to explain one real question, not just recite definitions.</p></div>
+    <div class="step"><div class="n">4</div><h4>Quiz Me after Each Concept</h4><p>After each concept, AI asks one question and I answer in my own words. If I can't, I haven't understood it yet.</p></div>
+  </div>
+
+  <figure class="fig wide">
+    <img src="ai-infra-01/en/00_knowledge_tree.svg" alt="AI infra knowledge tree with six modules">
+    <figcaption>My AI infra knowledge tree: four levels, six modules. Each module comes with one question I must be able to answer.</figcaption>
+  </figure>
+
+  <p>The order of the four levels matters. First I need to understand <strong>one computation</strong> on its own: how the model computes and where the hardware gets stuck. Next comes <strong>serving many users</strong>, then <strong>improving the model</strong> over time, and last, how all of this <strong>becomes a business</strong>. This post covers module 01: what computation happens when a prompt enters an LLM, and which repeated work we can avoid?</p>
+  <p>To keep the ideas concrete, I use one example throughout: <strong>a startup that builds an AI coding agent on an open-source model such as Qwen</strong>. For each idea, I ask the same four questions in order. Why does this problem come up? How does the computation actually work? So what does it change? And how does it apply in a real product?</p>
+
+  <!-- ============ 01 ============ -->
+  <h2><span class="num">01</span>Training, Inference, and the Life of a Request</h2>
+
+  <p><strong>Training</strong> adjusts the model's weights so the model learns to do a task. Ordinary <strong>inference</strong> uses the trained weights to compute outputs for new inputs, and the weights usually stay fixed. Inference doesn't pull a prepared answer from a database. It runs a fresh forward pass and generates tokens one by one.</p>
+
+  <figure class="fig">
+    <img src="ai-infra-01/en/01_overview.svg" alt="How training, weights, inference, serving, and GPUs relate">
+    <figcaption>Training produces the weights. Inference uses them. The serving system and the GPU make inference actually run.</figcaption>
+  </figure>
+
+  <p>Back to the AI coding agent. A user submits <strong>20,000 input tokens</strong> of code context, and the model generates <strong>50 output tokens</strong>. Here is the main flow:</p>
+  <ol>
+    <li>The application turns the content into token IDs the model can process.</li>
+    <li><strong>Prefill</strong>: the model runs over all known input tokens, computes each layer's hidden states and KV, and gets what it needs to generate the first token.</li>
+    <li><strong>Decode</strong>: the model usually generates one token per step, appends it to the context, and then generates the next one.</li>
+    <li>The application turns the output tokens back into readable text and returns it.</li>
+  </ol>
+
+  <figure class="fig wide">
+    <img src="ai-infra-01/en/02_prefill_decode.svg" alt="Prefill and decode flow">
+    <figcaption>Prefill processes the whole known input at once. Decode generates one token per step.</figcaption>
+  </figure>
+
+  <h3>Prefill vs. Decode</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th></th><th>Prefill</th><th>Decode</th></tr>
+      <tr><td>Main job</td><td>Process the existing input</td><td>Generate new output step by step</td></tr>
+      <tr><td>Parallelism</td><td>Input positions are known, so the work runs largely in parallel</td><td>Each step in a request usually depends on the token the previous step produced</td></tr>
+      <tr><td>Typical metric</td><td>A large part of TTFT (time to first token)</td><td>TPOT (time per output token), generation speed</td></tr>
+      <tr><td>Engineering focus</td><td>Handling long prompts efficiently</td><td>Efficiency of each generation step and KV access</td></tr>
+    </table>
+  </div>
+
+  <p><strong>A quick check:</strong> one request has 20,000 input tokens and 50 output tokens. Another has 100 input tokens and 2,000 output tokens. The first will likely spend most of its resources on prefill. The second will likely feel the long decode. Token counts alone can't predict total latency, though.</p>
+  <p><strong>An easy detail to get wrong:</strong> 2,000 output tokens means roughly 2,000 sequential prediction steps, and each step still runs a huge amount of parallel GPU work. Batching also lets the GPU process different users' requests in the same decode step. In short, decoding is <em>sequential across generation steps; parallel within each step and across batched requests</em>. Methods such as speculative decoding can cut some of the sequential cost.</p>
+
+  <!-- ============ 02 ============ -->
+  <h2><span class="num">02</span>Causal Attention: Why Past States Stay Fixed</h2>
+
+  <p>In a Transformer's self-attention, each token produces three vectors: a query, a key, and a value. For the 4th token, attention conceptually matches <strong>Q₄</strong> against <strong>K₁…K₄</strong>, then uses the resulting weights to combine <strong>V₁…V₄</strong>.</p>
+
+  <figure class="fig">
+    <img src="ai-infra-01/en/03_causal_matrix.svg" alt="Causal attention matrix">
+    <figcaption>Blue cells are already computed, green is the new token's row, and gray is the future the model can't see. A new token adds only one new row.</figcaption>
+  </figure>
+
+  <p><strong>Causal</strong> means a position can't see tokens that come after it. When the 4th token arrives, the attention results for the first three positions don't change. The model only computes the output for the new position.</p>
+  <p>The standard attention formula:</p>
+  <div class="formula">Attention(<i>Q</i>, <i>K</i>, <i>V</i>) = softmax<span style="font-size:1.4em">(</span><span class="frac"><span><i>QK</i><sup>T</sup></span><span>√<i>d</i><sub><i>k</i></sub></span></span><span style="font-size:1.4em">)</span> <i>V</i></div>
+
+  <h3>Why Cache K and V but Not Past Q?</h3>
+
+  <figure class="fig">
+    <img src="ai-infra-01/en/04_qkv.svg" alt="How Q, K, and V are used when computing a new token">
+    <figcaption>Past queries have done their job. The new position keeps reusing the past keys and values, and those are what the KV cache stores.</figcaption>
+  </figure>
+
+  <ul>
+    <li><strong>Past Q</strong>: the model already used it to compute that position's attention output. A new position doesn't need to send queries from Q₁, Q₂, or Q₃ again.</li>
+    <li><strong>Past K</strong>: the new query Q₄ still compares against the past keys to compute new attention scores.</li>
+    <li><strong>Past V</strong>: the new attention weights still combine the past values to produce the current output.</li>
+    <li><strong>The full attention matrix</strong>: there's no need to keep every score for every past query. Each new query computes its own scores, and the full matrix can get very large.</li>
+  </ul>
+  <p>So the <strong>KV cache stores the past key and value tensors for each attention layer</strong>. It doesn't store raw text, and it isn't the model's "memory database."</p>
+
+  <div class="chain">The causal chain: <b>causal mask</b> → old positions aren't affected by the future → the old K/V can be reused → the next decode step repeats less work</div>
+
+  <p>The cache doesn't remove attention itself. A new token still has to compute its own state, score it against the past keys, and combine the values.</p>
+
+  <!-- ============ 03 ============ -->
+  <h2><span class="num">03</span>The Benefit and Cost of the KV Cache</h2>
+
+  <p><strong>Benefit:</strong> later steps in the same request don't recompute the whole history from scratch. Long conversations and multi-turn agent tasks gain the most.</p>
+  <p><strong>Cost:</strong> the KV tensors have to live somewhere, usually in GPU memory. For common full-context attention models, with everything else fixed, KV cache size grows roughly linearly with context length and with the number of active requests. GPU memory is limited, so an engine can't keep every user's full history for free.</p>
+  <p>That leaves two goals pulling against each other:</p>
+  <blockquote><p>Reuse the cache as much as possible to avoid repeated work, without letting it fill GPU memory and crowd out new requests.</p></blockquote>
+  <p>Modules 02 (GPU memory and bandwidth) and 03 (serving) in the knowledge tree pick up this bottleneck.</p>
+
+  <!-- ============ 04 ============ -->
+  <h2><span class="num">04</span>From One Request's KV Cache to Prefix Reuse across Requests</h2>
+
+  <p>Ordinary incremental generation first reuses past KV <strong>within the same request</strong>. One step further: if <strong>different requests share exactly the same token prefix</strong>, and the model and inference settings are compatible, the engine can reuse that prefix's KV too.</p>
+  <p>Suppose there are three requests:</p>
+  <ul>
+    <li><strong>A</strong>: shared system prompt (2,000) + Python code (5,000), 7,000 tokens in total.</li>
+    <li><strong>B</strong>: the same shared system prompt (2,000) + JavaScript code (3,000), 5,000 tokens in total.</li>
+    <li><strong>C</strong>: the same system prompt (2,000) + the same Python code (5,000) + a new question (150), 7,150 tokens in total.</li>
+  </ul>
+
+  <figure class="fig">
+    <img src="ai-infra-01/en/05_prefix_tree.svg" alt="A prefix tree built from shared prefixes">
+    <figcaption>One edge can stand for a whole run of consecutive tokens. Nodes closer to the root are shared by more requests.</figcaption>
+  </figure>
+
+  <p><strong>Inference engines often manage these prefixes with a compressed prefix tree.</strong> One edge can represent a run of consecutive tokens, and requests with the same prefix share a branch. The engine maps token sequences to their KV cache locations, and uses the tree to match prefixes, insert new entries, reuse cached KV, and evict old entries. The tree is an index; the actual KV data lives separately in GPU memory.</p>
+  <p>In the ideal case, where the cache stays available:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Request</th><th class="r">Input to process without reuse</th><th class="r">New input with prefix reuse</th></tr>
+      <tr><td>A</td><td class="r">7,000</td><td class="r">7,000</td></tr>
+      <tr><td>B</td><td class="r">5,000</td><td class="r">3,000</td></tr>
+      <tr><td>C</td><td class="r">7,150</td><td class="r">150</td></tr>
+      <tr class="total"><td>Total</td><td class="r">19,150</td><td class="r">10,150</td></tr>
+    </table>
+  </div>
+
+  <p>That cuts repeated prefill work by <strong>9,000 / 19,150 ≈ 47%</strong> of input tokens. It doesn't mean real latency or FLOPs drop by 47%. Actual performance also depends on compute overhead, the implementation, and whether the cache is still there.</p>
+  <p>One key point: <strong>the same words don't mean the same KV</strong>. A token's higher-layer representation depends on the context before it. What an engine can reuse is the computed state of an identical prefix, with compatible positions and settings. Matching words across two different conversations doesn't count.</p>
+
+  <h3>Eviction</h3>
+  <p>When GPU memory runs short, an engine can't keep every branch. A common policy is LRU (least recently used): free cache starting from evictable leaf nodes, and protect the parts that active requests are using. Some engines also offer LFU, SLRU, or priority-based eviction. Whether a cache entry hits, or still exists, also depends on request scheduling, routing, and GPU capacity.</p>
+
+  <!-- ============ 05 ============ -->
+  <h2><span class="num">05</span>Where I Got It Wrong: The Real Split Isn't B2B vs. B2C</h2>
+
+  <p>My first instinct: B2B teams share code repositories, so their prompts seem more likely to repeat. B2C users each have different histories, so sharing seems hard.</p>
+  <p>Then I realized that <strong>sharing across users is only one source of reuse</strong>:</p>
+
+  <figure class="fig">
+    <img src="ai-infra-01/en/07_workload.svg" alt="Three sharing scopes that can all produce reuse">
+    <figcaption>Reuse can come from three different scopes.</figcaption>
+  </figure>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Sharing scope</th><th>Example</th><th>What it means</th></tr>
+      <tr><td>Global / cross-user</td><td>A fixed system prompt and tool definitions</td><td>Different users can share a stable prefix</td></tr>
+      <tr><td>Project</td><td>The same codebase and project instructions</td><td>Team workflows may share an extra-long prefix</td></tr>
+      <tr><td>Session</td><td>One person's ongoing conversation and history</td><td>Even when every user differs, each session keeps reusing its own prefix</td></tr>
+    </table>
+  </div>
+
+  <p><strong>The value of prefix caching depends on how much of a workload is repeated, stable, reusable prefix, and on whether the engine can keep and reach it. The B2B or B2C label doesn't decide it.</strong></p>
+
+  <!-- ============ 06 ============ -->
+  <h2><span class="num">06</span>Prompt Structure Is Engineering Too</h2>
+
+  <p>A concrete question came up for me: suppose a prompt puts a changing <strong>user ID or timestamp</strong> at the very beginning. The 2,000-token system prompt after it is identical every time. Why does the cache still miss so often?</p>
+  <p>Prefix matching starts at the first token. Once the beginning differs, every later position has a different context. The engine can't skip the start and reuse the KV for the part after it.</p>
+  <p>The better principle: <strong>stable content first, dynamic content last.</strong></p>
+
+  <figure class="fig">
+    <img src="ai-infra-01/en/06_prompt_order.svg" alt="How prompt order affects cache hits">
+    <figcaption>Left: dynamic content comes first, so the prefix breaks at the start. Right: content ordered from most to least stable reuses more.</figcaption>
+  </figure>
+
+  <p>You can layer a prompt by stability:</p>
+  <ol>
+    <li><strong>Global</strong>: stable tool definitions and system instructions.</li>
+    <li><strong>Project</strong>: shared project instructions and codebase context.</li>
+    <li><strong>Session</strong>: the stable history of the current session.</li>
+    <li><strong>Dynamic</strong>: the current task, temporary state, the time, and anything else that changes.</li>
+  </ol>
+  <p>If the user ID or timestamp only exists for application logs, <strong>leave it out of the model prompt entirely</strong> and manage it as application metadata. Two limits apply. Don't reorder instructions the model must follow just to raise the hit rate, and don't cross data isolation boundaries between tenants. Real APIs also often fix the serialization order as <code>tools → system → messages</code>.</p>
+
+  <h3>A Real Case: Claude Code</h3>
+  <p>In a 2026 engineering post, "Lessons from building Claude Code: Prompt caching is everything," Anthropic describes what they do in practice. They put the static system prompt and tool definitions in a stable prefix, then layer the project's <code>CLAUDE.md</code>, session state, and conversation after it. They also hit cache misses caused by timestamps and changes in tool order, and they stress stable prefixes and cache metrics.</p>
+  <p class="note">To be precise: this describes prompt caching in Anthropic's own API. It says nothing about which open-source inference engine, if any, runs underneath Claude Code. What carries over is the engineering principle, not the implementation.</p>
+
+  <!-- ============ 07 ============ -->
+  <h2><span class="num">07</span>Connecting the Chain</h2>
+
+  <p>At this point I won't just say "this inference engine makes AI faster." A causal chain explains more:</p>
+  <div class="chain">The same prefixes keep appearing → repeated prefill costs compute → KV makes old computed state reusable → a prefix tree finds shared prefixes automatically → less repeated work, and in some workloads lower latency and resource pressure → memory, eviction, and scheduling still need managing</div>
+  <p>An inference engine does far more than prefix caching. It also handles request scheduling, batching, model execution, and other optimizations. This post follows only one important technical thread. That thread leads to some product questions:</p>
+  <ul>
+    <li>Which developer workloads share a lot of stable prefix: agents, multi-turn coding, or RAG?</li>
+    <li>How do you measure effective cache hits, TTFT, TPOT, throughput, and cost per request?</li>
+    <li>Under which models, hardware, and request patterns are the gains large? When is the cache worth the GPU memory it takes?</li>
+  </ul>
+  <p>After this module, I can walk from user input through prefill → decode → causal attention → KV cache → prefix reuse across requests, and explain the benefits, the costs, and when it applies.</p>
+
+  <h2><span class="num">—</span>References</h2>
+  <ol class="refs">
+    <li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Vaswani et al., Attention Is All You Need (2017)</a></li>
+    <li><a href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener">Kwon et al., Efficient Memory Management for Large Language Model Serving with PagedAttention (2023)</a></li>
+    <li><a href="https://docs.vllm.ai/en/latest/design/prefix_caching.html" target="_blank" rel="noopener">vLLM: Automatic Prefix Caching (design doc)</a></li>
+    <li><a href="https://claude.com/blog/lessons-from-building-claude-code-prompt-caching-is-everything" target="_blank" rel="noopener">Anthropic: Lessons from building Claude Code: Prompt caching is everything (2026-04-30)</a></li>
+    <li><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching" target="_blank" rel="noopener">Anthropic: Prompt Caching Docs</a></li>
+  </ol>
+  <p class="note">Limits of these notes: the diagrams are simplified and don't show any engine's full official implementation. The token counts are teaching assumptions. Sharing across requests depends on the model, its settings, whether the cache is still resident, and isolation rules. Prompt caching in Anthropic's API isn't the same as prefix caching inside an open-source inference engine. Fewer repeated input tokens don't translate into proportional savings in real GPU compute or cost.</p>
+
+  <div class="next">Next · 02: GPUs are powerful. Why can running an LLM still be inefficient?</div>
+
+</main>
+</body>
+</html>
